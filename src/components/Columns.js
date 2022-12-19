@@ -5,17 +5,14 @@ import { populate,apply } from "../redux/slices/tableslices";
 export default function Columns({closepanel}){
     
     const dispatch = useDispatch();
+    const todeleteperm = useSelector((state)=>state.table.todelete)   //the deleted fields
+    const [toDelete,setToDelete] = useState([...todeleteperm]);       //to mark deletions
     const [dragId, setDragId] = useState();
-    var table = useSelector((state)=>state.table.order);
-    var todeleteperm = useSelector((state)=>state.table.todelete)   //the deleted fields
-    var [toDelete,setToDelete] = useState([...todeleteperm]);       //to mark deletions
+    const [applydisabled,setapplydisabled] = useState(true);
+    const table = useSelector((state)=>state.table.order);
     const [boxes,setBoxes] = useState([...table]);                  //to reorder the fields 
     const init = [...table];
-
-      // useEffect(()=>{                                               //
-      //   const res = dispatch(populate(init));
-      //   setBoxes(res.payload.slice())
-      // },[])                                     
+                   
 
 
       useEffect(()=>{                                              //to populate the field cards with the actual order
@@ -38,7 +35,8 @@ export default function Columns({closepanel}){
         setDragId(ev.currentTarget.id);
       };
 
-    const deletefield = (ev)=>{                                   //marking deletion
+    const deletefield = (ev)=>{  
+        setapplydisabled(false);                                 //marking deletion
         if(toDelete.indexOf(ev.currentTarget.id)!==-1)
           setToDelete(toDelete.filter((val) => val!==ev?.currentTarget.id))
         else{
@@ -48,8 +46,10 @@ export default function Columns({closepanel}){
 
     } 
 
+
     
       const handleDrop = (ev) => { 
+        setapplydisabled(false);
         const dragBox = boxes.find((box) => box.id === dragId);
         const dropBox = boxes.find((box) => box.id === ev.currentTarget.id);
         const dragBoxOrder = dragBox.order;
@@ -94,7 +94,7 @@ export default function Columns({closepanel}){
             </div>
         <div className='row d-flex justify-content-end w-100'>
             <div className='col-lg-2 col-md-3 col-sm-4'><button onClick={onClose} className='btn btn-light btn-sm'>Close</button></div>
-            <div className='col-lg-2 col-md-3 col-sm-4'><button onClick={onApply} className='btn btn-primary btn-sm'>Apply</button></div>
+            <div className='col-lg-2 col-md-3 col-sm-4'><button disabled={applydisabled} onClick={onApply} className='btn btn-primary btn-sm'>Apply</button></div>
         </div>
                 </div>
             </div>

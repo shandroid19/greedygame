@@ -31,7 +31,7 @@ export const tableSlice = createSlice({
                 row.responses = row.responses.toLocaleString();
                 row.impressions = row.impressions.toLocaleString();
                 row.clicks = row.clicks.toLocaleString();
-                row.revenue = "$"+row.revenue.toFixed(2).toString();
+                row.revenue = "$"+row.revenue?.toFixed(2).toString();
                 row.fill_rate=(res*100/req).toFixed(2)
                 row.ctr = (clicks*100/impressions).toFixed(2)
                 return row;

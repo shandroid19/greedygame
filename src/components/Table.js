@@ -59,7 +59,7 @@ import {  faSort} from '@fortawesome/free-solid-svg-icons'
     
         return (
           <div className="container">
-          <div className="row d-flex align-items-center">
+          <div className="row d-flex align-items-center px-5">
             <div className="col-3">
             <button className="btn btn-outline-primary" onClick={onSortChange}>
               Sort mode: {currentSort}
@@ -77,7 +77,7 @@ import {  faSort} from '@fortawesome/free-solid-svg-icons'
             </div>
           </div>
           
-          <div className="row">
+          <div className="row p-5">
           <table className="table table-striped">
             <thead>
               <tr>

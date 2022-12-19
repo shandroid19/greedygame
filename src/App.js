@@ -67,19 +67,19 @@ function App() {
   return (
     <div className='container-fluid p-5'>
       <div className='row'><h3>Analytics</h3></div>
-      <div><button onClick={makeRequest} className='btn'>request</button></div>
+      {/* <div><button onClick={makeRequest} className='btn'>request</button></div> */}
 
       <div className="container">
 
 <div className="row d-flex justify-content-between my-5">     
     <div className="col-6 ">    
-        <div className="row">
-            <div className="col-6">
-                <b><label className='form-label'>From</label></b>
+        <div className="row d-flex">
+            <div className="col-6 d-flex align-items-center">
+                <b><label className='form-label'>From&nbsp;</label></b>                                      
                 <input type='date' onChange={onChangeFrom} ref={from} className='form-control'></input>
             </div>
-            <div className="col-6">
-            <b><label className='form-label'>To</label></b>
+            <div className="col-6 d-flex align-items-center">
+            <b><label className='form-label'>To&nbsp;</label></b>
 
                 <input type='date' ref={to} onChange={onChangeTo} className='form-control'></input>
             </div>
